@@ -1,0 +1,35 @@
+.task_wrapper{
+  display: flex;
+  flex-direction: column;
+  .task_title{
+    display: flex;
+    justify-content: space-between;
+    .close_btn{
+      font-size: 45px;
+      font-weight: 600;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      transform: rotate(45deg);
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+
+      &:hover{
+        animation: rotation 2s infinite linear;
+      }
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+    }
+  }
+
+  .task_content{
+
+  }
+}

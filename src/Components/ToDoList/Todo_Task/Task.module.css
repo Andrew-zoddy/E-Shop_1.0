@@ -1,0 +1,32 @@
+.task_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.task_wrapper .task_title {
+  display: flex;
+  justify-content: space-between;
+}
+.task_wrapper .task_title .close_btn {
+  font-size: 45px;
+  font-weight: 600;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform: rotate(45deg);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+.task_wrapper .task_title .close_btn:hover {
+  animation: rotation 2s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+/*# sourceMappingURL=Task.module.css.map */

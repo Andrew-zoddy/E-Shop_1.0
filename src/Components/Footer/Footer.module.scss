@@ -1,0 +1,29 @@
+.footer_wrapper{
+  flex-shrink: 0;
+  height: 100px;
+  width: 100%;
+  background: darkslategrey;
+  text-align: center;
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+                  -45deg,
+                  rgb(106, 184, 222) 0%,
+                  rgb(158, 165, 208) 25%,
+                  rgb(16, 68, 50) 51%,
+                  rgb(143, 121, 129) 100%
+  );
+  animation: AnimateBG 20s ease infinite;
+}
+
+@keyframes AnimateBG {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+  .copiration_text{
+    display: block;
+    padding-top: 45px;
+    font-family: Palatino;
+    font-size: 16px;
+  }
