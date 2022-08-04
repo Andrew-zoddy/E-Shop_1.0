@@ -1,20 +1,27 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import css from './Todo.module.scss';
 import Task from "../Todo_Task/Task";
 import moment from "moment/moment";
-
+ // homework  - scroll add for todos
 
 const Todo = () => {
 
     const [taskContentState, setTaskContentState] = useState()
     const [tasksState, setTasksState] = useState([])
+    const [adding, setAdding] = useState(0)
 
-    const addTask = (content) => {
+
+    useEffect(() => {
+        console.log('task is added')}, [adding])
+
+    const onAddTask = (content) => {
+        setAdding(adding + 1)
         if (!taskContentState) return;
         const tasksStateArray = [...tasksState]
         let taskObj =
             {
                 id: null,
+                status: 'active',
                 title: '',
                 content: '',
                 date: '',
@@ -26,8 +33,10 @@ const Todo = () => {
         tasksStateArray.push(taskObj)
         setTasksState(tasksStateArray)
         setTaskContentState('')
+        localStorage.setItem(`tasks`, JSON.stringify(tasksStateArray) )
         return tasksState
     }
+
 
     return (
 
@@ -45,20 +54,18 @@ const Todo = () => {
                 <span>
                     <button
                         className={css.task_creation_button}
-                        onClick={() => addTask(taskContentState)}>create task</button>
+                        onClick={() => onAddTask(taskContentState)}>create task</button>
                 </span>
             </div>
             <div className={css.todos_content_wrapper}>
                 {
                     tasksState.map((task) => <Task
                         key={task.id}
-                        id={task.id}
-                        title={task.title}
-                        content={task.content}
-                        date={task.date}
+                        task={task}
                         setTasksState={setTasksState}
                         tasksState={tasksState} />
                     )
+
                 }
             </div>
 

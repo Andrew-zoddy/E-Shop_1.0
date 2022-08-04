@@ -7,7 +7,6 @@ import Comments from "../Comments/Comments";
 import Photos from "../Photos/Photos";
 import Todo from "../ToDoList/Todo_App/Todo";
 
-
 const Main = () => {
 
     return (
