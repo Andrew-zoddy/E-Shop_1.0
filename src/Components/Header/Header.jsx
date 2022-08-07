@@ -11,7 +11,7 @@ const Header = () => {
 
             <div className={css.logo_container}>
                 <NavLink to={'/'}>
-                    <div className={css.logo}>хвейсbook</div>
+                    <div className={css.logo}>Шмотbook</div>
                 </NavLink>
 
             </div>
@@ -19,20 +19,8 @@ const Header = () => {
             <div className={css.menu_container}>
                 <ul className={css.nav_block}>
 
-                    <NavLink to={'/users'}>
-                        <li className={css.nav_item}>users</li>
-                    </NavLink>
-
-                    <NavLink to={'/posts'}>
-                        <li className={css.nav_item}>posts</li>
-                    </NavLink>
-
-                    <NavLink to={'/comments'}>
-                        <li className={css.nav_item}>comments</li>
-                    </NavLink>
-
-                    <NavLink to={'/photos'}>
-                        <li className={css.nav_item}>photos</li>
+                    <NavLink to={'/products'}>
+                        <li className={css.nav_item}>Products</li>
                     </NavLink>
 
                     <NavLink to={'/todolist'}>

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import css from './Todo.module.scss';
 import Task from "../Todo_Task/Task";
 import moment from "moment/moment";
- // homework  - scroll add for todos
+
 
 const Todo = () => {
 
@@ -11,8 +11,8 @@ const Todo = () => {
     const [adding, setAdding] = useState(0)
 
 
-    useEffect(() => {
-        console.log('task is added')}, [adding])
+    // useEffect(() => {
+    //     console.log('task is added')}, [adding])
 
     const onAddTask = (content) => {
         setAdding(adding + 1)
