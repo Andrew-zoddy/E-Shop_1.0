@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import css from './Task.module.scss';
 
 
-const Task = ({task,tasksState,setTasksState}) => {
+const Task = ({task,index,tasksState,setTasksState}) => {
     const [updating, setUpdating] = useState(0)
     const [deleting, setDeleting] = useState(0)
 
@@ -29,7 +29,7 @@ const Task = ({task,tasksState,setTasksState}) => {
     return (
 
         <div className={css.task_wrapper}>
-            <div className={css.task_title}>{task.title}<br/> <br/>{task.date}
+            <div className={css.task_title}>{task.title}{index+1}<br/> <br/>{task.date}
                 <div className={css.close_btn} onClick={()=> onDeleteTask(task.id)}>+</div>
             </div>
 

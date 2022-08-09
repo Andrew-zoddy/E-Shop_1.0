@@ -27,7 +27,7 @@ const Todo = () => {
                 date: '',
             };
         taskObj.id = tasksState.length + 1;
-        taskObj.title = `Task # ${tasksState.length + 1}`;
+        taskObj.title = `Task # `;            //${tasksState.length + 1}
         taskObj.content = content;
         taskObj.date = moment().format('YYYY-MM-DD HH:mm')
         tasksStateArray.push(taskObj)
@@ -59,8 +59,9 @@ const Todo = () => {
             </div>
             <div className={css.todos_content_wrapper}>
                 {
-                    tasksState.map((task) => <Task
+                    tasksState.map((task, index) => <Task
                         key={task.id}
+                        index={index}
                         task={task}
                         setTasksState={setTasksState}
                         tasksState={tasksState} />

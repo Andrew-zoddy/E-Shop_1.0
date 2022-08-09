@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import css from './Products.module.scss';
 import Product from "./Product/Product";
 import axios from "axios";
+import Categories from "./CategoryNav/Categories";
 
 
 const Products = () => {
@@ -13,22 +14,20 @@ const Products = () => {
 
     }
 
-
-
     useEffect(() => {
         getProducts()
     }, [])
 
-
-
-
     return (
+        <div>
+            <Categories />
+            <div className={css.products_wrapper}>
 
-        <div className={css.products_wrapper}>
-            {
-                products.map(pr => <Product key={pr.id} product={pr} /> )
-            }
+                {
+                    products.map(pr => <Product key={pr.id} product={pr} /> )
+                }
 
+            </div>
         </div>
 
     )

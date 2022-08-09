@@ -14,7 +14,7 @@ const Main = () => {
                 <Route element={<Todo />} path={'/todolist'} />
             </Routes>
 
-            <div className={css.title_welcome}></div>
+
 
         </div>
 
