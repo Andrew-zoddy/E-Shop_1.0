@@ -7,7 +7,7 @@ const Comments = () => {
     return (
 
         <div className={css.comments_wrapper}>
-            comments content
+            comments contentable
         </div>
 
     )
