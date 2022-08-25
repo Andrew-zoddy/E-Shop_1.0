@@ -17,6 +17,7 @@ const AddEditProduct = ({setFormVisible, getProducts, editMode, product}) => {
     const getCategories = async () => {
         try{
             // setError('')
+            // set
             // setLoading(true)
             const response = await axios.get('https://fakestoreapi.com/products/categories')
             setCategories(response.data)
