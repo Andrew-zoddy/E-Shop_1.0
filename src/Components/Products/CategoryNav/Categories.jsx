@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import css from  './Categories.module.scss'
 import axios from "axios";
-import Product from "../Product/Product";
 import Category from "./Category/Category";
 
 

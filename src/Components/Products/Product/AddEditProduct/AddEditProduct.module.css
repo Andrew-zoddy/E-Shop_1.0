@@ -1,0 +1,23 @@
+.add_edit_product_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.add_edit_product_wrapper .form_control {
+  width: 90%;
+  height: 30px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+}
+.add_edit_product_wrapper .submit_button {
+  width: 100px;
+  height: 25px;
+  border-radius: 25px;
+  color: rgba(250, 235, 215, 0.97);
+  background-color: #126957;
+}
+.add_edit_product_wrapper .submit_button:hover {
+  background-color: #104432;
+  color: white;
+}
+
+/*# sourceMappingURL=AddEditProduct.module.css.map */
