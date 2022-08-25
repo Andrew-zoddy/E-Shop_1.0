@@ -67,7 +67,7 @@ const AddEditProduct = ({setFormVisible, getProducts, editMode, product}) => {
         <input  className={css.form_control}
                 placeholder={'Set title'}
                 type="text"
-                value={editMode ? title : 'product.title'}
+                // value={editMode ? title : 'product.title'}
                 onChange={(e) => setTitle(e.target.value)}
         />
 
