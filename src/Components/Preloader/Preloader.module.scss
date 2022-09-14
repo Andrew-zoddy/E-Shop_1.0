@@ -1,4 +1,12 @@
 .preloader_wrapper{
   font-size: 3rem;
+  position: absolute;
+  background-color: rgba(16, 68, 50, 0.33);
+  top: 50%;
+  right: 50%;
+  transform: translate(50%);
+  padding: 3rem;
+  border-radius: 25px;
+
 
 }

@@ -1,0 +1,17 @@
+.layout {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+}
+.layout .header {
+  background: rgb(16, 68, 50);
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  margin-bottom: 2rem;
+}
+.layout .content_container {
+  margin-top: 7%;
+}
+
+/*# sourceMappingURL=App.module.css.map */

@@ -2,17 +2,20 @@ import React, {useEffect, useState} from "react";
 import css from './Todo.module.scss';
 import Task from "../Todo_Task/Task";
 import moment from "moment/moment";
+import {logDOM} from "@testing-library/react";
 
 
 const Todo = () => {
 
     const [taskContentState, setTaskContentState] = useState()
-    const [tasksState, setTasksState] = useState([])
+    const [tasksState, setTasksState] = useState(JSON.parse(localStorage.getItem('items')))
     const [adding, setAdding] = useState(0)
 
-
     // useEffect(() => {
-    //     console.log('task is added')}, [adding])
+    //     const items = JSON.parse(localStorage.getItem('items'));
+    //     if (items) setTasksState(items)
+    // }, [])
+
 
     const onAddTask = (content) => {
         setAdding(adding + 1)
@@ -33,9 +36,12 @@ const Todo = () => {
         tasksStateArray.push(taskObj)
         setTasksState(tasksStateArray)
         setTaskContentState('')
-        localStorage.setItem(`tasks`, JSON.stringify(tasksStateArray) )
         return tasksState
     }
+
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(tasksState));
+    }, [tasksState]);
 
 
     return (
@@ -49,6 +55,7 @@ const Todo = () => {
                         placeholder={'Type your task...'}
                         value={taskContentState}
                         onChange={(e) => setTaskContentState(e.target.value)}
+                        onKeyDown={e => e.key === 'Enter' && onAddTask(taskContentState)}
                     />
                 </span>
                 <span>

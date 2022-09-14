@@ -1,0 +1,19 @@
+.main_title {
+  margin-top: 10%;
+  margin-left: 10%;
+  line-height: 90%;
+  height: 200px;
+  text-transform: uppercase;
+  background-image: linear-gradient(-225deg, #231557 0%, #44107a 29%, #ff1361 67%, #fff800 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-size: 2rem;
+}
+
+/*# sourceMappingURL=MainPage.module.css.map */

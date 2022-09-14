@@ -1,69 +1,83 @@
 import React, {useEffect, useState} from "react";
 import css from './Products.module.scss';
 import Product from "./Product/Product";
-import axios from "axios";
-import Preloader from "../Preloader/Preloader";
+import {useDispatch, useSelector} from "react-redux";
+import {getCategories, getProducts, getSpecificProducts} from "../../Redux/productsReducer";
 import AddEditProduct from "./Product/AddEditProduct/AddEditProduct";
 
 
+
 const Products = () => {
-    const [products, setProducts] = useState([])
-    const [loading,setLoading] = useState(false)
-    const [error,setError] = useState('')
-    const [formVisible,setFormVisible ] = useState(false)
 
-    const getProducts = async () => {
-        try{
-            setError('')
-            setLoading(true)
-            const response = await axios.get('https://fakestoreapi.com/products/')
-            setProducts(response.data)
-            setLoading(false)
-        }
-        catch (e) {
-            setLoading(false)
-            setError(e.message)
+    const dispatch = useDispatch();
 
-        }
+
+    const [formVisible, setFormVisible] = useState(false)
+    const [editMode, setEditMode] = useState(false)
+
+    const products = useSelector(state => state.products.products)
+    const categories = useSelector(state => state.products.categories)
+
+    const onAddProduct = () => {
+        setFormVisible(true)
+        setEditMode(false)
 
     }
 
     useEffect(() => {
+        dispatch(getProducts())
+    }, [dispatch])
 
-        getProducts().then()
+    useEffect(() => {
+        dispatch(getCategories())
+    }, [dispatch])
 
-    }, [])
+    const onCategoryChange = (cat) => {
+        cat === 'All Products'
+            ?
+            dispatch(getProducts())
+            :
+            dispatch(getSpecificProducts(cat))
+    }
 
-        if(error) return <Preloader text={error}/>
 
     return (
         <div>
 
             <div className={css.products_wrapper}>
-                {loading &&  <Preloader text={'Loading...'} />}
 
-                <div>
-                    <button onClick={() => setFormVisible(true)}>Add new product</button>
-                </div>
 
-                {
-                    products.map(pr => <Product
-                                                key={pr.id}
-                                                product={pr}
-                                                getProducts={getProducts}
-                                                setFormVisible={setFormVisible}
-                                                formVisible={formVisible}
+                <nav className={css.menu_bar}>
 
-                    /> )
-                }
+                    <button className={css.onAddProduct_btn} onClick={() => onAddProduct()}>Add new product</button>
 
-                {formVisible &&
-                                <AddEditProduct
-                                                setFormVisible={setFormVisible}
-                                                getProducts={getProducts}
 
-                                />}
+                    <label htmlFor="">Choose category</label>
+                    <select onChange={e => onCategoryChange(e.target.value)}  name="" id="">
+                        <option>All Products</option>
+                        {
+                            categories.map(cat => <option key={cat}>{cat}</option>)
+                        }
 
+                    </select>
+
+                </nav>
+
+                <section className={css.products_block}>
+                    {products &&
+                        products.map(pr => <Product
+                            key={pr.id}
+                            product={pr}
+
+
+                        />)
+                    }
+                </section>
+
+                   <AddEditProduct setFormVisible={setFormVisible}
+                                   formVisible={formVisible}
+                                   editMode={editMode}
+                   />
 
             </div>
         </div>

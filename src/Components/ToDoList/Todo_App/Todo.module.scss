@@ -1,7 +1,10 @@
 .todo_wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-top: 100px;
   padding-bottom:80px;
-  width: 500px;
+  margin: 0 auto;
 
   .todo_container{
 
@@ -23,7 +26,7 @@
     .task_creation_button{
       width: 120px;
       height: 50px;
-      font-family: Lato;
+      font-family: Lato,sans-serif;
       font-size: 18px;
       color: rgba(110, 22, 22, 0.78);
       border-bottom-right-radius: 50px;
@@ -33,5 +36,10 @@
         background: darkslategrey;
       }
     }
+  }
+  .todos_content_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

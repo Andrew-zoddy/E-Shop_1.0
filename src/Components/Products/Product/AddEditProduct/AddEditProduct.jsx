@@ -1,118 +1,164 @@
-import React, {useEffect, useState} from "react";
-import css from './AddEditProduct.module.scss';
-import Modal from "../../../Modal/Modal";
-import axios from "axios";
-
-const AddEditProduct = ({setFormVisible, getProducts, editMode, product}) => {
-
-    const [title,setTitle] = useState('');
-    const [price,setPrice] = useState('');
-    const [description,setDescription] = useState('');
-    const [image,setImgLink] = useState('');
-
-    const [categories,setCategories] = useState(['choose your category']);
-    const [category,setCategory] = useState('');
+import { Button,  Col, Form, Input, Modal, Row, Select} from 'antd';
+import TextArea from "antd/es/input/TextArea";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {addProducts, editProduct, getCategories} from "../../../../Redux/productsReducer";
 
 
-    const getCategories = async () => {
-        try{
-            // setError('')
-            // set
-            // setLoading(true)
-            const response = await axios.get('https://fakestoreapi.com/products/categories')
-            setCategories(response.data)
-            // setLoading(false)
-        }
-        catch (e) {
-            // setLoading(false)
-            // setError(e.message)
 
-        }
-
-    }
-
-    const onAddProduct = async () => {
-        try{
-            // setError('')
-            // setLoading(true)
-            if(!title || !price || !description || !image || !category) return
-            const response = await axios.post(
-                'https://fakestoreapi.com/products',
-                {title,price,description,image,category})
-            // setLoading(false)
-            console.log(response.data)
-            setFormVisible(false)
-            getProducts()
-        }
-        catch (e) {
-            // setLoading(false)
-            // setError(e.message)
-
-        }
-
-    }
+const AddEditProduct = ({setFormVisible, formVisible,product,editMode}) => {
+    const {Option} = Select
+    const dispatch = useDispatch();
+    const categories = useSelector(state => state.products.categories)
+    const [form] = Form.useForm()
 
 
+
+    // for getting categories
+    useEffect(() => {
+        if (!formVisible) return
+        dispatch(getCategories())
+    }, [dispatch, formVisible])
+
+    //set values into form
     useEffect(() =>{
-        if(!product) return
-        getCategories().then()
-    },[product])
+        if (!product) return
+        if (editMode) {
+            form.setFieldsValue({
+                title: product.title,
+                price: product.price,
+                description: product.description,
+                image: product.image,
+                category: product.category,
+            })
+        }
 
-    console.log(product)
+    },[product,editMode,form])
+
+    const onAddEditProduct = (values) => {
+        editMode ? dispatch(editProduct(values,product.id)) :
+        dispatch(addProducts(values))
+        setFormVisible(false)
+    }
+
+    return (
+        <Modal
+
+            title={!editMode ? "Add Product" : "Edit Product"}
+            open={formVisible}
+            onCancel={() => setFormVisible(false)}
+            footer={null}
+            destroyOnClose={true}
+        >
+            <Form
+                form={form}
+                name="basic"
+                // labelCol={{
+                //     span: 8,
+                // }}
+                // wrapperCol={{
+                //     span: 16,
+                // }}
+                initialValues={
+                    {}
+
+                }
+                onFinish={onAddEditProduct}
+                // onFinishFailed={onFinishFailed}
+                // autoComplete="off"
+            >
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input product title!',
+                        },
+                    ]}
+                >
+                    <Input/>
+                </Form.Item>
+                <Form.Item
+                    label="Price"
+                    name="price"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input product price!',
+                        },
+                    ]}
+                >
+                    <Input type={'number'}/>
+                </Form.Item>
+                <Form.Item
+                    label="Description"
+                    name="description"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input product description!',
+                        },
+                    ]}
+                >
+                    <TextArea showCount maxLength={300} onChange={null}/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Image"
+                    name="image"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input product image!',
+                        },
+                    ]}
+                >
+                    <Input type={'text'}/>
+                </Form.Item>
+
+                <Form.Item
+                    label="Category"
+                    name="category"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please select product category!',
+                        },
+                    ]}
+                >
+                    <Select
+                        // style={{
+                        //     width: '30%',
+                        // }}
+                    >
+                        {categories.map((cat)=> <Option key={cat}>{cat}</Option>)}
 
 
-    return(
-<Modal setFormVisible={setFormVisible} modalName={'Add product'}>
-    <form onSubmit={(e) => e.preventDefault()} className={css.add_edit_product_wrapper}>
-        <label>Title</label>
-        <input  className={css.form_control}
-                placeholder={'Set title'}
-                type="text"
-                // value={editMode ? title : 'product.title'}
-                onChange={(e) => setTitle(e.target.value)}
-        />
+                    </Select>
+                </Form.Item>
 
 
-        <label>Price</label>
-        <input className={css.form_control}
-               placeholder={'Set price'}
-               value={price}
-               type="number"
-               onChange={(e) => setPrice(e.target.value)}
-        />
+                <Row style={{justifyContent: 'flex-end'}}>
+                    <Col>
+                        <Button type="primary" htmlType="submit" style={!editMode ? {marginRight: '10px'} : {marginRight: '10px', background:"green"}}>
+                            {!editMode ? "Add Product" : "Edit Product"}
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Button
+                            onClick={() => setFormVisible(false)}
+                            type="default"
+                        >
+                            Cancel
+                        </Button>
+                    </Col>
+                </Row>
 
-
-        <label>Description</label>
-        <textarea
-            placeholder={'Set description'}
-            value={description}
-            className={css.form_control}  cols="30" rows="10"
-            onChange={(e) =>setDescription(e.target.value)}>
-
-        </textarea>
-
-        <label>Image Link</label>
-        <input
-            value={image}
-            placeholder={'Set image'}
-            onChange={(e) =>setImgLink(e.target.value)}
-            className={css.form_control} type="text"/>
-
-        <label>Category</label>
-        <select className={css.form_control}
-                value={category}
-                onChange={(e) => setCategory(e.target.value)} >
-            {
-                categories.map(ctg => <option key={ctg.id}>{ctg}</option>)
-            }
-        </select>
-
-        <input onClick={() => onAddProduct()} className={css.submit_button} type="submit"/>
-    </form>
-</Modal>
-
-
+            </Form>
+        </Modal>
     )
+
 }
 
 export default AddEditProduct;

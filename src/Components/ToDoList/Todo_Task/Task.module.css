@@ -1,10 +1,25 @@
 .task_wrapper {
+  width: 500px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
+  border: rgba(16, 68, 50, 0.44) solid 2px;
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: inset 1px 1px 5px #104432;
 }
 .task_wrapper .task_title {
   display: flex;
   justify-content: space-between;
+  border: rgba(47, 79, 79, 0.48) solid 2px;
+  box-shadow: 2px 2px 5px grey;
+  border-radius: 25px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-family: Lato, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
 }
 .task_wrapper .task_title .close_btn {
   font-size: 45px;
@@ -27,6 +42,26 @@
   to {
     transform: rotate(359deg);
   }
+}
+.task_wrapper .task_content {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 20px;
+}
+.task_wrapper .task_content .done_button {
+  width: 80px;
+  height: 30px;
+  font-family: Trattatello, sans-serif;
+  font-size: 19px;
+  background: rgba(47, 79, 79, 0.48);
+  border-radius: 25px;
+}
+.task_wrapper .task_content .done_button:hover {
+  background: rgba(95, 152, 152, 0.48);
+}
+.task_wrapper .task_content .done_task {
+  text-decoration: line-through;
 }
 
 /*# sourceMappingURL=Task.module.css.map */

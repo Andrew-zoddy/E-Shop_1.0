@@ -1,3 +1,32 @@
+.products_wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem;
+}
+.products_wrapper .menu_bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.products_wrapper .menu_bar .onAddProduct_btn {
+  text-align: center;
+  margin-right: 2rem;
+  width: 100px;
+  border-radius: 25px;
+  background-color: darkolivegreen;
+  color: white;
+}
+.products_wrapper .menu_bar .onAddProduct_btn:hover {
+  background-color: #7a9850;
+  box-shadow: 1px 2px 7px #98b26e;
+}
+.products_wrapper .products_block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-
-/*# sourceMappingURL=products.module.css.map */
+/*# sourceMappingURL=Products.module.css.map */

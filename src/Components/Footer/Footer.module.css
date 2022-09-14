@@ -1,10 +1,15 @@
 .footer_wrapper {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-shrink: 0;
-  height: 100px;
+  height: 80px;
   width: 100%;
-  background: darkslategrey;
-  text-align: center;
+  background: #2f4f4f;
   background-size: 300% 300%;
+  opacity: 0.8;
   background-image: linear-gradient(-45deg, rgb(106, 184, 222) 0%, rgb(158, 165, 208) 25%, rgb(16, 68, 50) 51%, rgb(143, 121, 129) 100%);
   animation: AnimateBG 20s ease infinite;
 }
@@ -22,8 +27,7 @@
 }
 .copiration_text {
   display: block;
-  padding-top: 45px;
-  font-family: Palatino;
+  font-family: Palatino, sans-serif;
   font-size: 16px;
 }
 
