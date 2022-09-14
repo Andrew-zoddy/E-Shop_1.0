@@ -1,17 +1,15 @@
-import { Button,  Col, Form, Input, Modal, Row, Select} from 'antd';
+import {Button, Col, Form, Input, Modal, Row, Select} from 'antd';
 import TextArea from "antd/es/input/TextArea";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {addProducts, editProduct, getCategories} from "../../../../Redux/productsReducer";
 
 
-
-const AddEditProduct = ({setFormVisible, formVisible,product,editMode}) => {
+const AddEditProduct = ({setFormVisible, formVisible, product, editMode}) => {
     const {Option} = Select
     const dispatch = useDispatch();
     const categories = useSelector(state => state.products.categories)
     const [form] = Form.useForm()
-
 
 
     // for getting categories
@@ -21,7 +19,7 @@ const AddEditProduct = ({setFormVisible, formVisible,product,editMode}) => {
     }, [dispatch, formVisible])
 
     //set values into form
-    useEffect(() =>{
+    useEffect(() => {
         if (!product) return
         if (editMode) {
             form.setFieldsValue({
@@ -33,11 +31,11 @@ const AddEditProduct = ({setFormVisible, formVisible,product,editMode}) => {
             })
         }
 
-    },[product,editMode,form])
+    }, [product, editMode, form])
 
     const onAddEditProduct = (values) => {
-        editMode ? dispatch(editProduct(values,product.id)) :
-        dispatch(addProducts(values))
+        editMode ? dispatch(editProduct(values, product.id)) :
+            dispatch(addProducts(values))
         setFormVisible(false)
     }
 
@@ -132,7 +130,7 @@ const AddEditProduct = ({setFormVisible, formVisible,product,editMode}) => {
                         //     width: '30%',
                         // }}
                     >
-                        {categories.map((cat)=> <Option key={cat}>{cat}</Option>)}
+                        {categories.map((cat) => <Option key={cat}>{cat}</Option>)}
 
 
                     </Select>
@@ -141,7 +139,8 @@ const AddEditProduct = ({setFormVisible, formVisible,product,editMode}) => {
 
                 <Row style={{justifyContent: 'flex-end'}}>
                     <Col>
-                        <Button type="primary" htmlType="submit" style={!editMode ? {marginRight: '10px'} : {marginRight: '10px', background:"green"}}>
+                        <Button type="primary" htmlType="submit"
+                                style={!editMode ? {marginRight: '10px'} : {marginRight: '10px', background: "green"}}>
                             {!editMode ? "Add Product" : "Edit Product"}
                         </Button>
                     </Col>

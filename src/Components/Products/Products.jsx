@@ -6,7 +6,6 @@ import {getCategories, getProducts, getSpecificProducts} from "../../Redux/produ
 import AddEditProduct from "./Product/AddEditProduct/AddEditProduct";
 
 
-
 const Products = () => {
 
     const dispatch = useDispatch();
@@ -53,7 +52,7 @@ const Products = () => {
 
 
                     <label htmlFor="">Choose category</label>
-                    <select onChange={e => onCategoryChange(e.target.value)}  name="" id="">
+                    <select onChange={e => onCategoryChange(e.target.value)} name="" id="">
                         <option>All Products</option>
                         {
                             categories.map(cat => <option key={cat}>{cat}</option>)
@@ -74,10 +73,10 @@ const Products = () => {
                     }
                 </section>
 
-                   <AddEditProduct setFormVisible={setFormVisible}
-                                   formVisible={formVisible}
-                                   editMode={editMode}
-                   />
+                <AddEditProduct setFormVisible={setFormVisible}
+                                formVisible={formVisible}
+                                editMode={editMode}
+                />
 
             </div>
         </div>

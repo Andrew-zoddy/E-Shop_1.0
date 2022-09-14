@@ -2,10 +2,9 @@ import {productsAPI} from "../api/productsEndpoints";
 import {setError, setSuccess} from "./appReducer";
 
 
-
 //Types
 const SET_PRODUCTS_DATA = 'PRODUCTS/SET_PRODUCTS_DATA'
-const SET_CATEGORIES ='PRODUCTS/SET_CATEGORIES'
+const SET_CATEGORIES = 'PRODUCTS/SET_CATEGORIES'
 
 
 //Initial state for reducer
@@ -38,7 +37,7 @@ export const getProducts = () => async (dispatch) => {
             dispatch(setProducts(response.data))
         }
     } catch (error) {
-       dispatch(setError(error))
+        dispatch(setError(error))
 
 
     }
@@ -95,11 +94,11 @@ export const addProducts = (productParams) => async (dispatch) => {
 
 //edit product
 
-export const editProduct = (productParams,id) => async (dispatch) => {
+export const editProduct = (productParams, id) => async (dispatch) => {
     try {
         dispatch(setError(''))
         dispatch(setSuccess(''))
-        const response = await productsAPI.editProduct(productParams,id);
+        const response = await productsAPI.editProduct(productParams, id);
         if (response.status === 200) {
             dispatch(setSuccess(`Very  successfully edited ${response.data.title} =).`))
             dispatch(getProducts())

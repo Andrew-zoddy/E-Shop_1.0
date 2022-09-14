@@ -10,9 +10,8 @@ import {useSelector} from "react-redux";
 import AntTable from "./Components/AntTable/AntTable";
 
 
-
 const App = () => {
-    const { Header, Content } = Layout;
+    const {Header, Content} = Layout;
 
     const error = useSelector(state => state.app.error)
     const success = useSelector(state => state.app.success)
@@ -21,21 +20,17 @@ const App = () => {
     useEffect(() => {
         if (!error) return
         message.error(error.message);
-    },[error])
+    }, [error])
 
 
     useEffect(() => {
         if (!success) return
         message.success(success);
-    },[success])
-
-
-
-
+    }, [success])
 
 
     return (
-        <Layout className={css.layout} >
+        <Layout className={css.layout}>
             <Header className={css.header}>
                 <div className={css.logo_container}/>
                 <Menu
@@ -71,19 +66,17 @@ const App = () => {
                         <Route element={<MainPage/>} exact path={'/'}/>
                         <Route element={<Products/>} exact path={'/products'}/>
                         <Route element={<AntTable/>} exact path={'/table'}/>
-                        <Route element={<div style={{textAlign: "center"}}>ERROR 404 - page not found</div>}  path={'/*'}/>
+                        <Route element={<div style={{textAlign: "center"}}>ERROR 404 - page not found</div>}
+                               path={'/*'}/>
                     </Routes>
                 </div>
             </Content>
-            <Footer />
-
-
+            <Footer/>
 
 
         </Layout>
     )
 };
-
 
 
 export default App;
