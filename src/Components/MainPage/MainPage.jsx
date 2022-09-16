@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import css from './MainPage.module.scss'
 
-const MainPage = () => {
 
+const MainPage = () => {
     return(
         <div>
             <h3 className={css.main_title}>Hey! <br/>

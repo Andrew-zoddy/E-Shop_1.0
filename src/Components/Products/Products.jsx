@@ -4,6 +4,7 @@ import Product from "./Product/Product";
 import {useDispatch, useSelector} from "react-redux";
 import {getCategories, getProducts, getSpecificProducts} from "../../Redux/productsReducer";
 import AddEditProduct from "./Product/AddEditProduct/AddEditProduct";
+import {getUsers} from "../../Redux/usersReducer";
 
 
 const Products = () => {
@@ -16,6 +17,7 @@ const Products = () => {
 
     const products = useSelector(state => state.products.products)
     const categories = useSelector(state => state.products.categories)
+    const users = useSelector(state => state.users.users)
 
     const onAddProduct = () => {
         setFormVisible(true)
@@ -30,6 +32,10 @@ const Products = () => {
     useEffect(() => {
         dispatch(getCategories())
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getUsers())
+    },[dispatch])
 
     const onCategoryChange = (cat) => {
         cat === 'All Products'

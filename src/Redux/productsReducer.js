@@ -32,14 +32,13 @@ export const productsReducer = (state = initialState, action) => {
 export const getProducts = () => async (dispatch) => {
     try {
         dispatch(setError(''))
+        dispatch(setSuccess(''))
         const response = await productsAPI.getProducts();
         if (response.status === 200) {
             dispatch(setProducts(response.data))
         }
     } catch (error) {
         dispatch(setError(error))
-
-
     }
 };
 
@@ -55,6 +54,7 @@ export const setProducts = (products) => {
 export const getSpecificProducts = (cat) => async (dispatch) => {
     try {
         dispatch(setError(''))
+        dispatch(setSuccess(''))
         const response = await productsAPI.getSpecProducts(cat);
         if (response.status === 200) {
             dispatch(setSpecificProducts(response.data))
